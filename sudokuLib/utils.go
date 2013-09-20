@@ -42,9 +42,10 @@ func (S SudokuGrid) getNextOpenCel() (bool, int, int) {
 			}
 		}
 	}
-	return false, 0, 0
+	return false, -1, -1
 }
 
+//This function should build the string to allow printing to different channels
 func (S SudokuGrid) Print() {
 
 	fmt.Println("")
