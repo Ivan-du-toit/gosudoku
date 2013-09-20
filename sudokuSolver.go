@@ -1,19 +1,19 @@
 package main
 
 import (
-	"./sudokuLib"
 	"fmt"
+	"github.com/Ivan-du-toit/gosudoku/sudokuLib"
 )
 
 func main() {
-	grid := sudoku.LoadGrid()
+	grid := sudokuLib.LoadGrid()
 	fmt.Println("Solving:")
 	grid.Print()
 	found, solution := grid.Solve()
 	if found {
-		fmt.Println("solution found:")
+		fmt.Println("Solution found:")
 		solution.Print()
 	} else {
-		fmt.Println("No solution found")
+		fmt.Println("No solution found.")
 	}
 }

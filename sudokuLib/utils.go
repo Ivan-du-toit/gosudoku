@@ -1,4 +1,4 @@
-package sudoku
+package sudokuLib
 
 import (
 	"encoding/csv"
@@ -7,8 +7,6 @@ import (
 	"os"
 	"strconv"
 )
-
-type SudokuGrid [9][9]int8
 
 func LoadGrid() SudokuGrid {
 	file, err := os.Open("grid.csv")
@@ -34,29 +32,6 @@ func LoadGrid() SudokuGrid {
 		}
 	}
 	return grid
-}
-
-func (S SudokuGrid) Solve() (bool, SudokuGrid) {
-	if !S.isValid() {
-		return false, S
-	}
-	found, row, col := S.getNextOpenCel()
-	if !found {
-		if S.isValid() {
-			//This is the solution!!
-			return true, S
-		}
-		return false, S
-	}
-	for i := 1; i < 10; i++ {
-		S[row][col] = int8(i)
-		worked, solvedGrid := S.Solve()
-		if worked {
-			return worked, solvedGrid
-		}
-	}
-
-	return false, S
 }
 
 func (S SudokuGrid) getNextOpenCel() (bool, int, int) {
